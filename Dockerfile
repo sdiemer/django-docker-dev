@@ -4,7 +4,7 @@ RUN apt-get -q update
 RUN apt-get -qy install --no-install-recommends sudo bash-completion make git git-lfs python3-pip python3-setuptools python3-venv ipython3
 RUN apt-get -qy autoclean
 
-RUN pip3 install django django-debug-toolbar pytest pytest-django pillow bleach
+RUN pip3 install django django-debug-toolbar pytest pytest-django pillow bleach tinycss2
 
 # Add unix user
 ARG USER_UID
