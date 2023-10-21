@@ -80,13 +80,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-alias full-upgrade='sudo apt-get update && sudo apt-get dist-upgrade -y'
 alias lskernels='dpkg --get-selections | grep linux'
 alias lspackages='dpkg --get-selections'
 
 alias rmempty='find . -type d -empty -delete'
 alias rmpyc='find . -name *.pyc -type f -delete && find . -name __pycache__ -type d -delete'
-alias djrunserver8500='python3 manage.py runserver 0.0.0.0:8500'
+alias djrunserver='python3 manage.py runserver 0.0.0.0:8500'
 alias djmkmigrations='python3 manage.py makemigrations'
 alias djmigrate='python3 manage.py migrate'
 alias djtest='python3 manage.py test'

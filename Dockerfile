@@ -1,10 +1,20 @@
-FROM debian:bullseye
+FROM debian:bookworm
 
 RUN apt-get -q update
-RUN apt-get -qy install --no-install-recommends sudo bash-completion make git git-lfs python3-pip python3-setuptools python3-venv ipython3 vim
+RUN apt-get -qy install --no-install-recommends sudo bash-completion make git git-lfs htop python3-setuptools python3-venv ipython3 vim
 RUN apt-get -qy autoclean
 
-RUN pip3 install django django-debug-toolbar pytest pytest-django requests pillow bleach tinycss2 build twine
+# Create venv
+RUN python3 -m venv /opt/venv --system-site-packages
+ENV VIRTUAL_ENV="/opt/venv"
+ENV PATH="$VIRTUAL_ENV/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+# Force usage of recent tools
+RUN apt purge -y python3-setuptools python3-wheel
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel
+
+# Install dependencies
+RUN pip install django django-debug-toolbar pytest pytest-django requests pillow bleach tinycss2 build twine
 
 # Add unix user
 ARG USER_UID
